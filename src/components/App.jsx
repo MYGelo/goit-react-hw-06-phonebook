@@ -4,6 +4,9 @@ import { ContactList } from './contactList/contactList';
 import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
 import { useEffect } from 'react';
+import { TaskForm } from './TaskForm/TaskForm';
+import { TaskList } from './TaskList/TaskList';
+import { AppBar } from './AppBar/AppBar';
 
 export const App = () => {
   const [contacts, setContacts] = useState(
@@ -71,8 +74,18 @@ export const App = () => {
         <Filter filter={filter} handleChange={handleChange} />
         <ContactList contacts={getNewList()} onDelete={onDelete} />
       </div>
-      <div>
-        <p>hello gays</p>
+      <div
+        style={{
+          justifyContent: 'center',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <p> TEST TEST TEST TEST</p>
+        <AppBar />
+        <TaskForm />
+        <TaskList />
       </div>
     </>
   );
