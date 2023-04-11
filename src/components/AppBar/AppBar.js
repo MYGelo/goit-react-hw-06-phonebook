@@ -1,4 +1,4 @@
-import { StatusFilter } from 'Redux/StatusFilter/StatusFilter';
+import { StatusFilter } from 'components/StatusFilter/StatusFilter';
 import { TaskCounter } from 'Redux/TaskCounter/TaskCounter';
 
 export const AppBar = () => {
