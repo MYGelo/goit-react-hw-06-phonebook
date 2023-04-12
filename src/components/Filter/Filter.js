@@ -1,30 +1,44 @@
-import PropTypes from 'prop-types';
-import css from '../Filter/Filter.module.css';
-import { nanoid } from 'nanoid';
+// Импортируем хук
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'components/Button/Button';
+// Импортируем объект значений фильтра
+import { statusFilters } from '../../Redux/constants';
+import { getStatusFilter } from '../../Redux/selectors';
+import { setStatusFilter } from '../../Redux/filtersSlice';
 
-const filterInputId = nanoid();
-
-export const Filter = ({filter, handleChange}) => {
-    return (
-        <div>
-            <label
-            className={css.filter__label}
-            htmlFor={filterInputId}
-            >Find contacts by name
-            </label>
-            <input
-            className={css.filter__input}
-            id={filterInputId}
-            type="text"
-            name="filter"
-            value={filter}
-            onChange={handleChange}
-            />
-        </div>
-    );
-}
-
-Filter.propTypes = {
-    filter: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
-  };
+export const StatusFilter = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector(getStatusFilter);
+  // Вызываем генератор экшена и передаём значение фильтра
+  // Отправляем результат - экшен изменения фильтра
+  const handleFilterChange = filter => dispatch(setStatusFilter(filter));
+  return (
+    <div>
+      <label>Find contacts by</label>
+      <input
+        type="text"
+        name="filter"
+        // value={filter}
+        onChange={handleFilterChange}
+      ></input>
+      <Button
+        selected={filter === statusFilters.all}
+        onClick={() => handleFilterChange(statusFilters.all)}
+      >
+        All
+      </Button>
+      <Button
+        selected={filter === statusFilters.active}
+        onClick={() => handleFilterChange(statusFilters.active)}
+      >
+        Active
+      </Button>
+      <Button
+        selected={filter === statusFilters.completed}
+        onClick={() => handleFilterChange(statusFilters.completed)}
+      >
+        Completed
+      </Button>
+    </div>
+  );
+};
