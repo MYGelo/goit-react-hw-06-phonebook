@@ -1,6 +1,6 @@
-import { TaskForm } from './contactForm/contactForm';
-import { TaskList } from './contactList/contactList';
-import { StatusFilter } from './Filter/Filter';
+import { ContactsForm } from './contactForm/contactForm';
+import { ContactList } from './contactList/contactList';
+import { ContactFilter } from './Filter/Filter';
 
 export const App = () => {
   return (
@@ -14,10 +14,10 @@ export const App = () => {
         }}
       >
         <h1>Phonebook</h1>
-        <TaskForm />
+        <ContactsForm />
         <h2>Contacts</h2>
-        <StatusFilter />
-        <TaskList />
+        <ContactFilter />
+        <ContactList />
       </div>
     </>
   );

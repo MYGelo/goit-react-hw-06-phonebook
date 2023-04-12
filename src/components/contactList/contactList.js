@@ -1,30 +1,24 @@
-import { useSelector } from 'react-redux';
-import { Task } from 'components/contacts/contacts';
-import { getTasks, getStatusFilter } from '../../Redux/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { getTasks } from '../../Redux/selectors';
 import css from './contactList.module.css';
-import { statusFilters } from '../../Redux/constants';
+import { deleteTask } from 'Redux/contactSlice';
 
-const getVisibleTasks = (tasks, statusFilter) => {
-  switch (statusFilter) {
-    case statusFilters.active:
-      return tasks.filter(task => !task.completed);
-    case statusFilters.completed:
-      return tasks.filter(task => task.completed);
-    default:
-      return tasks;
-  }
-};
+export const ContactList = ({ task }) => {
+  const contacts = useSelector(getTasks);
 
-export const TaskList = () => {
-  const tasks = useSelector(getTasks);
-  const statusFilter = useSelector(getStatusFilter);
-  const visibleTasks = getVisibleTasks(tasks, statusFilter);
+  const dispatch = useDispatch();
+
+  const handleDelete = () => dispatch(deleteTask(task));
 
   return (
     <ul className={css.contact__list}>
-      {visibleTasks.map(task => (
+      {contacts.map(task => (
         <li className={css.contact__list__item} key={task.id}>
-          <Task task={task} />
+          <span className={css.contact__list__text}>{task.text} :</span>
+          <span className={css.contact__list__text}>{task.number}</span>
+          <button type="button" onClick={handleDelete}>
+            Delete
+          </button>
         </li>
       ))}
     </ul>

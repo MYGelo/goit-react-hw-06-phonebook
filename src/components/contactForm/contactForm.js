@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { Button } from 'components/Button/Button';
-import { addTask } from '../../Redux/tasksSlice';
+import { addTask } from '../../Redux/contactSlice';
 import css from './contactForm.module.css';
 
-export const TaskForm = () => {
+export const ContactsForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -35,7 +35,7 @@ export const TaskForm = () => {
           // placeholder="Enter number..."
         />
         <Button className={css.btn} type="submit">
-          Add task
+          Add contact
         </Button>
       </form>
     </>

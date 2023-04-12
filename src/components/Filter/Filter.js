@@ -1,44 +1,31 @@
 // Импортируем хук
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from 'components/Button/Button';
 // Импортируем объект значений фильтра
-import { statusFilters } from '../../Redux/constants';
-import { getStatusFilter } from '../../Redux/selectors';
-import { setStatusFilter } from '../../Redux/filtersSlice';
+import { change } from '../../Redux/filtersSlice';
+import { nanoid } from 'nanoid';
 
-export const StatusFilter = () => {
+const filterInputId = nanoid();
+
+export const ContactFilter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getStatusFilter);
-  // Вызываем генератор экшена и передаём значение фильтра
-  // Отправляем результат - экшен изменения фильтра
-  const handleFilterChange = filter => dispatch(setStatusFilter(filter));
+  const filter = useSelector(state => state.filter);
+
+  // const handleFilterChange = filter => dispatch(change(filter));
+
+  const onChange = e => {
+    dispatch(change(e.target.value));
+    console.log(dispatch(change(e.target.value)));
+  };
   return (
     <div>
-      <label>Find contacts by</label>
+      <label htmlFor={filterInputId}>Find contacts by</label>
       <input
+        id={filterInputId}
         type="text"
         name="filter"
-        // value={filter}
-        onChange={handleFilterChange}
+        value={filter}
+        onChange={onChange}
       ></input>
-      <Button
-        selected={filter === statusFilters.all}
-        onClick={() => handleFilterChange(statusFilters.all)}
-      >
-        All
-      </Button>
-      <Button
-        selected={filter === statusFilters.active}
-        onClick={() => handleFilterChange(statusFilters.active)}
-      >
-        Active
-      </Button>
-      <Button
-        selected={filter === statusFilters.completed}
-        onClick={() => handleFilterChange(statusFilters.completed)}
-      >
-        Completed
-      </Button>
     </div>
   );
 };
