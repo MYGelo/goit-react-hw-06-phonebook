@@ -24,9 +24,8 @@ console.log(persistedReducer);
 
 export const store = configureStore({
   reducer: {
-    contacts:
-      // persistedReducer
-      tasksReducer,
+    contacts: persistedReducer,
+    // tasksReducer,
     filters: filtersReducer,
   },
   middleware: getDefaultMiddleware =>
