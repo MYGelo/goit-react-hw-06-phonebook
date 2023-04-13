@@ -1,6 +1,4 @@
-// Импортируем хук
 import { useDispatch, useSelector } from 'react-redux';
-// Импортируем объект значений фильтра
 import { change } from '../../Redux/filtersSlice';
 import { nanoid } from 'nanoid';
 import { getStatusFilter } from 'Redux/selectors';

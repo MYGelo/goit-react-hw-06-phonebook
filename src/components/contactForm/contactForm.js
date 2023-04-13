@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Button } from 'components/Button/Button';
-import { addTask } from '../../Redux/contactSlice';
+import { addContact } from '../../Redux/contactSlice';
 import css from './contactForm.module.css';
 
 export const ContactsForm = () => {
@@ -9,7 +9,7 @@ export const ContactsForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    dispatch(addTask(form.elements.text.value, form.elements.number.value));
+    dispatch(addContact(form.elements.text.value, form.elements.number.value));
     form.reset();
   };
 
