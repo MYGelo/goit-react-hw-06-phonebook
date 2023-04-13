@@ -11,7 +11,7 @@ export const ContactList = ({ task }) => {
   const filter = useSelector(getStatusFilter).toLowerCase();
 
   const normalizedContacts = contacts.filter(task =>
-    task.text.toLowerCase().includes(filter)
+    task.name.toLowerCase().includes(filter)
   );
 
   return (
@@ -19,7 +19,7 @@ export const ContactList = ({ task }) => {
       <ul className={css.contact__list}>
         {normalizedContacts.map((contact, id) => (
           <li key={id} className={css.contact__list__item}>
-            <span>{contact.text} : </span>
+            <span>{contact.name} : </span>
             <span>{contact.number} </span>
             <button type="button" onClick={handleDelete}>
               Delete
