@@ -20,7 +20,6 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, tasksReducer);
-console.log(persistedReducer);
 
 export const store = configureStore({
   reducer: {

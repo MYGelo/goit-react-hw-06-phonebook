@@ -1,15 +1,26 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'components/Button/Button';
 import { addContact } from '../../Redux/contactSlice';
 import css from './contactForm.module.css';
+import { getTasks } from 'Redux/selectors';
 
 export const ContactsForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(getTasks);
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    dispatch(addContact(form.elements.text.value, form.elements.number.value));
+    const contact = contacts.map(contact => contact.name);
+    const inputValue = form.elements.text.value;
+
+    if (contact.includes(inputValue) !== false) {
+      alert(`${inputValue} in phonebook!`);
+    } else {
+      dispatch(
+        addContact(form.elements.text.value, form.elements.number.value)
+      );
+    }
     form.reset();
   };
 
