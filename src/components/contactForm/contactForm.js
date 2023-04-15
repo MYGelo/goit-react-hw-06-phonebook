@@ -11,10 +11,12 @@ export const ContactsForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    const contact = contacts.map(contact => contact.name);
     const inputValue = form.elements.text.value;
+    const contactExists = contacts.find(
+      contact => contact.name.toLowerCase() === inputValue.toLowerCase()
+    );
 
-    if (contact.includes(inputValue) !== false) {
+    if (contactExists) {
       alert(`${inputValue} in phonebook!`);
     } else {
       dispatch(
