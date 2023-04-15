@@ -17,7 +17,7 @@ export const ContactsForm = () => {
     );
 
     if (contactExists) {
-      alert(`${inputValue} in phonebook!`);
+      alert(`${inputValue} is already in contacts.`);
     } else {
       dispatch(
         addContact(form.elements.text.value, form.elements.number.value)
